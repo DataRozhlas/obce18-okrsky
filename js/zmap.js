@@ -17,7 +17,7 @@ var partyCols = {
   'STAN': 'darkgray',
   'ANO': '#cab2d6',
   'TOP 09': '#6a3d9a',
-  'OSTATNI': 'lightgray'
+  'Ostatní': 'lightgray'
 };
 
 var selCont = '<select><option value="HL_OKRS">Vítězové v okrscích</option>' 
@@ -170,13 +170,27 @@ function drawMap(party, mustMomc) {
         document.getElementById('tooltip').innerHTML = 'Myší vyberte obec.'
       }
     });
+    map.on('singleclick', function(evt) {
+      var pixel = map.getEventPixel(evt.originalEvent);
+      if (map.hasFeatureAtPixel(pixel)) {
+        map.forEachFeatureAtPixel(pixel, function(feature) {
+          window.open('https://volby.cz/pls/kv2018/kv1111?xjazyk=CZ&xid=1&xdz=1&xnumnuts='
+          + okresy[feature.properties_.Okres]
+          + '&xobec='
+          + feature.properties_.okid.split('_')[0]
+          + '&xokrsek='
+          + feature.properties_.okid.split('_')[1]
+          + '&xstat=0&xvyber=0', '_blank');
+        });
+      }
+    });
   };
 
   //mobil
   map.on('singleclick', function(evt) {
     var pixel = map.getEventPixel(evt.originalEvent);
     if (map.hasFeatureAtPixel(pixel)){
-      map.forEachFeatureAtPixel(pixel, function(feature, layer) {
+      map.forEachFeatureAtPixel(pixel, function(feature) {
         makeTooltip(party, feature.properties_);
       });
     } else {
