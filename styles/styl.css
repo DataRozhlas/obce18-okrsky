@@ -1,0 +1,9 @@
+/*
+CSS soubory ve složce /styles/ se do výsledného článku zakompilují automaticky
+*/
+.zasttype {
+    margin-left: 5px;
+}
+#tooltip {
+    min-height: 80px;
+}
