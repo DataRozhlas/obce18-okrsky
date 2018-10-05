@@ -1,4 +1,4 @@
-var hst = 'https://data.irozhlas.cz/obce18-okrsky';
+var hst = 'https://data.irozhlas.cz/obce18-okrsky/';
 if (window.location.hostname == 'localhost') {
   hst = './scratch/'
 };
