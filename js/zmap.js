@@ -13,7 +13,7 @@ var partyCols = {
   'KSČM': '#e31a1c',
   'Piráti': 'black',
   'SPD': '#a6cee3',
-  'KDU-ČSL': '#ffff99',
+  'KDU-ČSL': 'yellow',
   'STAN': 'darkgray',
   'ANO': '#cab2d6',
   'TOP 09': '#6a3d9a',
@@ -46,7 +46,7 @@ function getColor(props, party) {
     var win = orderWinners(props);
     col = partyCols[win[0]] || 'rgba(242,240,247, 1';
   } else if (party == 'UCAST') {
-    var val = props['PLATNE_HLASY'] / props['ZAPSANI_VOLICI']
+    var val = (props['ODEVZDANE_OBALKY'] / props['ZAPSANI_VOLICI']) * 100
     if (val <= breaks[party][0]) { col = 'rgba(242,240,247, 0.7)' } else
     if (val <= breaks[party][1]) { col = 'rgba(203,201,226, 0.7)' } else
     if (val <= breaks[party][2]) { col = 'rgba(158,154,200, 0.7)' } else
@@ -55,6 +55,7 @@ function getColor(props, party) {
       {col = 'rgba(242,240,247, 1'}
   } else {
     var val = props[party] / props['PLATNE_HLASY']
+    if (val == 0) { col = 'rgba(254,240,217, 0.0)' } else
     if (val <= breaks[party][0]) { col = 'rgba(254,240,217, 0.7)' } else
     if (val <= breaks[party][1]) { col = 'rgba(253,204,138, 0.7)' } else
     if (val <= breaks[party][2]) { col = 'rgba(252,141,89, 0.7)' } else
@@ -102,7 +103,7 @@ var background = new ol.layer.Tile({
   source: new ol.source.TileImage({
     url: 'https://interaktivni.rozhlas.cz/tiles/ton_b1/{z}/{x}/{y}.png',
     attributions: [
-      new ol.Attribution({ html: 'obrazový podkres <a target="_blank" href="http://stamen.com">Stamen</a>, <a target="_blank" href="https://samizdat.cz">Samizdat</a>, data <a target="_blank" href="https://www.czso.cz/csu/czso/uchazeci-o-zamestnani-dosazitelni-a-podil-nezamestnanych-osob-podle-obci">ČSÚ</a>'})
+      new ol.Attribution({ html: 'obrazový podkres <a target="_blank" href="http://stamen.com">Stamen</a>, <a target="_blank" href="https://samizdat.cz">Samizdat</a>, data <a target="_blank" href="https://www.volby.cz">ČSÚ</a> a <a target="_blank" href="http://vdp.cuzk.cz/vdp/ruian/vymennyformatspecialni/vyhledej?vf.cr=U&_vf.vu=on&vf.vu=VOH&_vf.vu=on&search=Vyhledat">ČÚZK</a>'})
     ]
   })
 })
@@ -124,10 +125,10 @@ function drawMap(party, mustMomc) {
       url: hst + 'tiles/{z}/{x}/{y}.pbf'
     }),
     style: function(feature) {
-      if (mustMomc & (feature.properties_.isMomc == false)) {
-        return null
-      } else {
+      if (mustMomc == feature.properties_.isMomc) {
         return getColor(feature.properties_, party)
+      } else {
+        return null
       }
     }
   });
@@ -136,7 +137,7 @@ function drawMap(party, mustMomc) {
 
   if (window.innerWidth < 768) {
     initZoom = 6;
-    document.getElementById('tooltip').innerHTML = 'Kliknutím vyberte obec.'
+    document.getElementById('tooltip').innerHTML = 'Kliknutím vyberte okrsek.'
   } else {
     initZoom = 7;
   }
@@ -167,24 +168,26 @@ function drawMap(party, mustMomc) {
           makeTooltip(party, feature.properties_);
         });
       } else {
-        document.getElementById('tooltip').innerHTML = 'Myší vyberte obec.'
-      }
-    });
-    map.on('singleclick', function(evt) {
-      var pixel = map.getEventPixel(evt.originalEvent);
-      if (map.hasFeatureAtPixel(pixel)) {
-        map.forEachFeatureAtPixel(pixel, function(feature) {
-          window.open('https://volby.cz/pls/kv2018/kv1111?xjazyk=CZ&xid=1&xdz=1&xnumnuts='
-          + okresy[feature.properties_.Okres]
-          + '&xobec='
-          + feature.properties_.okid.split('_')[0]
-          + '&xokrsek='
-          + feature.properties_.okid.split('_')[1]
-          + '&xstat=0&xvyber=0', '_blank');
-        });
+        document.getElementById('tooltip').innerHTML = 'Myší vyberte okrsek.'
       }
     });
   };
+
+  map.on('singleclick', function(evt) {
+    if (screen.width < 800) {
+      return
+    }
+    var pixel = map.getEventPixel(evt.originalEvent);
+    if (map.hasFeatureAtPixel(pixel)) {
+      map.forEachFeatureAtPixel(pixel, function(feature) {
+        console.log(feature.properties_)
+        var obNaz = feature.properties_.Momc ||   feature.properties_.Obec
+        window.open('https://www.irozhlas.cz/volby/komunalni-volby-2018/' 
+        + obNaz.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(' ', '-')
+        + '-'+ feature.properties_.KODZASTUP);
+      });
+    }
+  });
 
   //mobil
   map.on('singleclick', function(evt) {
@@ -194,7 +197,7 @@ function drawMap(party, mustMomc) {
         makeTooltip(party, feature.properties_);
       });
     } else {
-      document.getElementById('tooltip').innerHTML = 'Kliknutím vyberte obec.'
+      document.getElementById('tooltip').innerHTML = 'Kliknutím vyberte okrsek.'
     }
   });
 

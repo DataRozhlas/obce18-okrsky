@@ -7,3 +7,12 @@ CSS soubory ve složce /styles/ se do výsledného článku zakompilují automat
 #tooltip {
     min-height: 80px;
 }
+
+.radiob {
+    max-width: 300px;
+}
+
+.mcmo_sel {
+    max-width: 800px;
+    width: auto;
+}

@@ -13,9 +13,9 @@ options: "noheader, nopic" #wide, noheader (+nopic)
 <wide>
 <div id="mapdiv">
 	<div id="select"></div>
-	<form>
-		<input type="radio" class="zasttype" name="zasttype" value="obce" checked="checked">Zastupitelstva obcí a magistráty
-		<input type="radio" class="zasttype" name="zasttype" id="zastcheck" value="mcmo">Zastupitelstva městských částí
+	<form class="mcmo_sel">
+		<div class="radiob"><input type="radio" class="zasttype" name="zasttype" value="obce" checked="checked">Zastupitelstva obcí a magistráty</div>
+		<div class="radiob"><input type="radio" class="zasttype" name="zasttype" id="zastcheck" value="mcmo">Zastupitelstva městských částí</div>
 		</form>
 	<div id="tooltip">Myší vyberte obec.</div>
 	<div id="map" class="map"></div>

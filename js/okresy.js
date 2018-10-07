@@ -1,4 +1,4 @@
-var okresy = {'Hlaví město Praha': '1100',
+var okresy = {'Hlavní město Praha': '1100',
 'Benešov': '2101',
 'Beroun': '2102',
 'Kladno': '2103',
