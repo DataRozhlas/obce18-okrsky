@@ -1,10 +1,12 @@
 title: "Jak se volilo ve vašem okrsku? Prohlédněte si nejpodrobnější mapu výsledků komunálních voleb"
 perex: "Detailní mapa volebních výsledků ukazuje úspěch hnutí ANO na okrajích Prahy, bašty sociálních demokratů a lidovců, i to, jak si velká města dělí ANO s ODS."
 authors: ["Jan Cibulka", "Michal Zlatkovský"]
-published: "7. října 2018"
+published: "8. října 2018"
+coverimg: https://data.irozhlas.cz/obce18-okrsky/media/cover.png
+coverimg_note: ""
 styles: ["https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol.css"]
 libraries: ["https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js", "https://ft-polyfill-service.herokuapp.com/v2/polyfill.min.js?features=Object.values,String.prototype.startsWith", "https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.4/ol-debug.js"]
-options: "noheader, nopic" #wide, noheader (+nopic)
+options: "" #wide, noheader (+nopic)
 ---
 
 Z mapy je patrné rozložení stranických sil v celé republice. Malé obce na Moravě, Vysočině a ve východních Čechách patří lidovcům. Ti mají mají ze zobrazených stran vůbec nejvíc zastupitelů, 3,6 tisíce. ČSSD, považovaná za poraženého komunálních voleb, obhájila některé tradiční bašty - mezi nimi Nový Jičín, Karvinou nebo Bohumín. 
