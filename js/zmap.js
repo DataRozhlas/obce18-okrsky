@@ -17,7 +17,7 @@ var partyCols = {
   'STAN': 'darkgray',
   'ANO': '#cab2d6',
   'TOP 09': '#6a3d9a',
-  'Ostatní': 'lightgray'
+  'Ostatní': '#006d2c'
 };
 
 var selCont = '<select><option value="HL_OKRS">Vítězové v okrscích</option>' 
