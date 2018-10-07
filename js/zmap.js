@@ -16,6 +16,7 @@ var partyCols = {
   'KDU-ČSL': 'yellow',
   'STAN': 'darkgray',
   'ANO': '#cab2d6',
+  'PRAHA SOBĚ': '#dd1c77',
   'TOP 09': '#6a3d9a',
   'Ostatní': '#006d2c'
 };
