@@ -238,6 +238,15 @@ $('#select').on('change', function() {
 
 $('.zasttype').change(function() {
   selMcmo = document.getElementById('zastcheck').checked;
+  if (selMcmo == true) {
+    $('#select option[value="HL_PRAHA SOBĚ"]').prop('disabled', true)//ciza disabled
+    $("#select select").val('HL_OKRS');
+    if (selType == 'HL_PRAHA SOBĚ') { //zmenit stranu
+      selType = 'HL_OKRS';
+    }
+  } else {
+    $('#select option[value="HL_PRAHA SOBĚ"]').prop('disabled', false)//ciza enabled
+  }
   drawMap(selType, selMcmo);
 });
 
