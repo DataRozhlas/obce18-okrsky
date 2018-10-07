@@ -173,21 +173,21 @@ function drawMap(party, mustMomc) {
     });
   };
 
-  map.on('singleclick', function(evt) {
-    if (screen.width < 800) {
-      return
-    }
-    var pixel = map.getEventPixel(evt.originalEvent);
-    if (map.hasFeatureAtPixel(pixel)) {
-      map.forEachFeatureAtPixel(pixel, function(feature) {
-        console.log(feature.properties_)
-        var obNaz = feature.properties_.Momc ||   feature.properties_.Obec
-        window.open('https://www.irozhlas.cz/volby/komunalni-volby-2018/' 
-        + obNaz.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(' ', '-')
-        + '-'+ feature.properties_.KODZASTUP);
-      });
-    }
-  });
+  //map.on('singleclick', function(evt) {
+  //  if (screen.width < 800) {
+  //    return
+  //  }
+  //  var pixel = map.getEventPixel(evt.originalEvent);
+  //  if (map.hasFeatureAtPixel(pixel)) {
+  //    map.forEachFeatureAtPixel(pixel, function(feature) {
+  //      console.log(feature.properties_)
+  //      var obNaz = feature.properties_.Momc ||   feature.properties_.Obec
+  //      window.open('https://www.irozhlas.cz/volby/komunalni-volby-2018/' 
+  //      + obNaz.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(' ', '-')
+  //      + '-'+ feature.properties_.KODZASTUP);
+  //    });
+  //  }
+  //});
 
   //mobil
   map.on('singleclick', function(evt) {
