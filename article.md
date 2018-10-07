@@ -10,7 +10,7 @@ options: "noheader, nopic" #wide, noheader (+nopic)
 Z mapy je patrné rozložení stranických sil v celé republice. Malé obce na Moravě, Vysočině a ve východních Čechách patří lidovcům. Ti mají mají ze zobrazených stran vůbec nejvíc zastupitelů, 3,6 tisíce. ČSSD, považovaná za poraženého komunálních voleb, obhájila některé tradiční bašty - mezi nimi Nový Jičín, Karvinou nebo Bohumín. 
 
 <wide>
-<div>_Mapa ukazuje <b>volební okrsky</b>, tedy nejmenší možné rozčlenění volebních výsledků. Větší obce se dělí na více okrsků. Je možné přepnout mezi zisky hlavních politických stran v zastupitelstvech obcích i městských částí. Kvůli přehlednosti zvolili datoví žurnalisté serveru iROZHLAS.cz pohled pouze na devět sněmovních stran._</div><br>
+<div>_Mapa ukazuje <b>volební okrsky</b>, tedy nejmenší možné rozčlenění volebních výsledků. Větší obce se dělí na více okrsků. Je možné přepnout mezi zisky hlavních politických stran v zastupitelstvech obcích i městských částí. Kvůli přehlednosti zvolil server iROZHLAS.cz pohled na devět sněmovních stran s celorepublikovou působností a nejvyšším počtem kandidátů. Pro přesnější vykreslení situace v hlavním městě Praze jsme mezi ně přidali také iniciativu Praha sobě._</div><br>
 <div id="mapdiv">
 	<div id="select"></div>
 	<form class="mcmo_sel">
